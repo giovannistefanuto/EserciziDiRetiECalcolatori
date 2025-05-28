@@ -10,7 +10,7 @@ int main(){
     int b=20;
     int c=30;
     int*ptr = &a;
-    printf("a e' all'indirizzo: %d\n", ptr); //%d %d è decimale, %x è esadecimale, %o è ottale, %f è floating-point, %c è caratteri e %s per stringhe
+    printf("a e' all'indirizzo: %d\n", ptr); //%d è decimale, %x è esadecimale, %o è ottale, %f è floating-point, %c è caratteri e %s per stringhe
     ptr = &b;
     printf("b e' all'indirizzo: %d\n", ptr);
     ptr = &c;
