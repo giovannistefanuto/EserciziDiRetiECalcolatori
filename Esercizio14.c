@@ -36,7 +36,8 @@ void checkEndian() {
     char *c = (char*)&x;       // punta al primo byte di x
 
     if (*c == 1) {
-        printf("Il sistema e' Little Endian\n"); // La maggior parte dei sistemi moderni utilizza l'endianness little-endian, tipico di architetture x86, x86-64 e ARM, mentre il big-endian è meno comune.
+        printf("Il sistema e' Little Endian\n"); // La maggior parte dei sistemi moderni utilizza l'endianness little-endian, 
+                                                 // tipico di architetture x86, x86-64 e ARM, mentre il big-endian è meno comune.
     } else {
         printf("Il sistema e' Big Endian\n");
     }
