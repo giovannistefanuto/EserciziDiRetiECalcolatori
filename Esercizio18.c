@@ -1,7 +1,7 @@
 /*
- * Gestione errori nelle chiamate di sistema
- * • Ogni system call deve stampare un messaggio d’errore e terminare con codice specifico.
- * • Obiettivi: uso corretto di errno, perror()
+ * (d) Stampa di indirizzo IP da puntatore
+ * • Funzione che riceve un unsigned char* e stampa l’IP in notazione puntata.
+ * • Obiettivi: manipolazione di byte, notazione umana degli IP.
  */
 #include<stdio.h>
 #include<stdlib.h>
@@ -15,7 +15,6 @@
 int main() {
     int s;
     struct sockaddr_in server;
-    
     s = socket(AF_INET, SOCK_STREAM, 0);
     if (s < 0) {
         perror("Creazione socket fallita"); 
@@ -25,15 +24,11 @@ int main() {
 
     //Riempimento della struttura sockaddr_in
     server.sin_family = AF_INET;
-    server.sin_port = htons(80); //80 in BigEndian //80 La porta 80 è la porta standard del protocollo HTTP
+    server.sin_port = htons(80); 
     server.sin_addr.s_addr = inet_addr("96.7.128.198"); // IP di example.com
-    if(-1 == connect(s, (struct sockaddr *) &server, sizeof(struct sockaddr_in))){
-        perror("Connection fallita");
-        return 1;
-    }
-    printf("Connessione riuscita a 96.7.128.198:80\n");
+    char *p = (char*)&server.sin_addr.s_addr;
+    printf("%u.%u.%u.%u\n", (unsigned char)p[0], (int)p[1], (unsigned char)p[2], (unsigned char)p[3]);
 
-    close(s);  // buona pratica
     
     return 0;
 }
